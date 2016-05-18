@@ -1,0 +1,33 @@
+body {
+	background-color:#ddecef !important;
+}
+.jumbotron {
+	background-color: #87aaae !important;
+	color:#f6f6f6 !important;
+	text-align: center;
+}
+.panel-default>.panel-heading {
+	background-color: #87aaae !important;
+	color:#f6f6f6 !important;
+}
+.form-control:focus {
+	box-shadow:none !important;
+	border-color: #ccc !important;
+}
+#clickButton {
+	background-color:#87aaae; 
+	border:none;
+}
+.btn-primary:focus {
+	outline: none !important;
+}
+.btn-primary:hover {
+	opacity: 0.9;
+}
+p {
+	color:#aaa;
+}
+th {
+	color:#aaa;
+	border-top:none !important;
+}

@@ -73,4 +73,5 @@ $(document).ready(function() {
 		$('#traintable > tbody').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFreq + '</td><td>' + nextArrival + '</td><td>' + trainMin + '</td></tr>');
 
 	})
+
 });

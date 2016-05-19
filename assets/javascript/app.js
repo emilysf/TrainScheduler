@@ -1,73 +1,76 @@
-//firebase link
-trainData = new Firebase('https://train-emily.firebaseio.com/');
+$(document).ready(function() {
 
-//button to add trains
-$('#clickButton').on('click', function(){
+	//firebase link
+	trainData = new Firebase('https://train-emily.firebaseio.com/');
 
-	//gathers train info input
-	var trainName = $('#train').val().trim();
-	var trainDestination = $('#destination').val().trim();
-	var trainTime = $('#time').val().trim();
-	var trainFreq = $('#freq').val().trim();
+	//button to add trains
+	$('#clickButton').on('click', function(){
 
-	//creates object to hold train info
-	var newTrain = {
-		name: trainName,
-		destination: trainDestination,
-		time: trainTime,
-		freq: trainFreq
-	}
+		//gathers train info input
+		var trainName = $('#train').val().trim();
+		var trainDestination = $('#destination').val().trim();
+		var trainTime = $('#time').val().trim();
+		var trainFreq = $('#freq').val().trim();
 
-	//pushes data to firebase
-	trainData.push(newTrain);
+		//creates object to hold train info
+		var newTrain = {
+			name: trainName,
+			destination: trainDestination,
+			time: trainTime,
+			freq: trainFreq
+		}
 
-	console.log(newTrain);
+		//pushes data to firebase
+		trainData.push(newTrain);
 
-	//clears boxes
-	$('#train').val('');
-	$('#destination').val('');
-	$('#time').val('');
-	$('#freq').val('');
+		console.log(newTrain);
 
-	//prevents moving to new page
-	return false;
-})
+		//clears boxes
+		$('#train').val('');
+		$('#destination').val('');
+		$('#time').val('');
+		$('#freq').val('');
 
-//event adds data to the current train schedule chart
-trainData.on("child_added", function(childSnapshot, prevChildKey){
+		//prevents moving to new page
+		return false;
+	})
 
-	//store everything in a variable
-	var trainName = childSnapshot.val().name;
-	var trainDestination = childSnapshot.val().destination;
-	var trainTime = childSnapshot.val().time;
-	var trainFreq = childSnapshot.val().freq;
+	//event adds data to the current train schedule chart
+	trainData.on("child_added", function(childSnapshot, prevChildKey){
+
+		//store everything in a variable
+		var trainName = childSnapshot.val().name;
+		var trainDestination = childSnapshot.val().destination;
+		var trainTime = childSnapshot.val().time;
+		var trainFreq = childSnapshot.val().freq;
 
 
 
-	//first train time
-	var firstTimeConverted = moment(trainTime ,"HH:mm").subtract(1, "years");
-	console.log(firstTimeConverted);
-	
-	//current time
-	var currentTime = moment();
-	console.log("Current time: " + moment(currentTime).format("HH:mm"));
+		//first train time
+		var firstTimeConverted = moment(trainTime ,"HH:mm").subtract(1, "years");
+		console.log(firstTimeConverted);
+		
+		//current time
+		var currentTime = moment();
+		console.log("Current time: " + moment(currentTime).format("HH:mm"));
 
-	var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-	console.log("Time difference: " + diffTime);
+		var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+		console.log("Time difference: " + diffTime);
 
-	//time apart
-	var tRemainder = diffTime % trainFreq; 
-	console.log("Time remaining: " + tRemainder);
+		//time apart
+		var tRemainder = diffTime % trainFreq; 
+		console.log("Time remaining: " + tRemainder);
 
-	//minutes until next train 
-	var trainMin = trainFreq - tRemainder;
-	console.log("Minutes until train: " + trainMin);
+		//minutes until next train 
+		var trainMin = trainFreq - tRemainder;
+		console.log("Minutes until train: " + trainMin);
 
-	//nextTrain
-	var nextTrain = moment().add(trainMin, "minutes");
-	var nextArrival = moment(nextTrain).format("hh:mm A");
-	
-	//adds to train chart
-	$('#traintable > tbody').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFreq + '</td><td>' + nextArrival + '</td><td>' + trainMin + '</td></tr>');
+		//nextTrain
+		var nextTrain = moment().add(trainMin, "minutes");
+		var nextArrival = moment(nextTrain).format("hh:mm A");
+		
+		//adds to train chart
+		$('#traintable > tbody').append('<tr><td>' + trainName + '</td><td>' + trainDestination + '</td><td>' + trainFreq + '</td><td>' + nextArrival + '</td><td>' + trainMin + '</td></tr>');
 
-})
+	})
+});

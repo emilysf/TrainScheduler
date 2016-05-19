@@ -1,6 +1,7 @@
 body {
 	background-color:#ddecef !important;
 }
+/*jumbotron css*/
 .jumbotron {
 	background-color: #87aaae !important;
 	color:#f6f6f6 !important;
@@ -11,14 +12,17 @@ body {
 .jumbotron p {
 	color:#f6f6f6;
 }
+/*panel css*/
 .panel-default>.panel-heading {
 	background-color: #87aaae !important;
 	color:#f6f6f6 !important;
 }
+/*form css*/
 .form-control:focus {
 	box-shadow:none !important;
 	border-color: #ccc !important;
 }
+/*button css*/
 #clickButton {
 	background-color:#87aaae; 
 	border:none;
@@ -29,6 +33,7 @@ body {
 .btn-primary:hover {
 	opacity: 0.9;
 }
+/*font css*/
 p {
 	color:#aaa;
 }

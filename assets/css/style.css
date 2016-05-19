@@ -5,6 +5,11 @@ body {
 	background-color: #87aaae !important;
 	color:#f6f6f6 !important;
 	text-align: center;
+	padding-top: 15px !important;
+	padding-bottom: 15px !important;
+}
+.jumbotron p {
+	color:#f6f6f6;
 }
 .panel-default>.panel-heading {
 	background-color: #87aaae !important;
@@ -30,4 +35,7 @@ p {
 th {
 	color:#aaa;
 	border-top:none !important;
+}
+td {
+	color:#aaa;
 }
